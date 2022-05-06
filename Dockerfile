@@ -1,4 +1,4 @@
-FROM python
+FROM python:3.9
 
 # Kopieren der requirements
 COPY ./requirements.txt /app/requirements.txt
