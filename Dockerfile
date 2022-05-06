@@ -6,7 +6,6 @@ COPY ./requirements.txt /app/requirements.txt
 WORKDIR /app
 #Installieren der Abhaengigkeiten
 RUN pip install -r requirements.txt
-RUN python -m nltk.downloader punkt
 
 # Kopieren des source-code
 COPY . /app
