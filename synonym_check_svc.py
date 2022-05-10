@@ -1,3 +1,5 @@
+import nltk
+nltk.download()
 from nltk.corpus import wordnet as wn
 import pandas as pd
 
