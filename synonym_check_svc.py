@@ -1,5 +1,5 @@
 import nltk
-nltk.download()
+nltk.download('wordnet')
 from nltk.corpus import wordnet as wn
 import pandas as pd
 
