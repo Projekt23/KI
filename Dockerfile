@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.10
 
 # Kopieren der requirements
 COPY ./requirements.txt /app/requirements.txt
@@ -7,6 +7,10 @@ WORKDIR /app
 #Installieren der Abhaengigkeiten
 RUN pip install -r requirements.txt
 
+# Download Tokenizer von spaCy
+RUN python -m spacy download en_core_web_sm
+RUN python -m spacy download de_core_news_sm
+
 # Kopieren des source-code
 COPY . /app
 
@@ -14,7 +18,7 @@ COPY . /app
 ENTRYPOINT [ "python" ]
 
 # starten der Applikation
-CMD [ "app.py" ]
+CMD [ "run.py" ]
 
 # Port 5000 freigeben
 EXPOSE 5000
