@@ -19,8 +19,6 @@ app = create_app(os.environ.get("KI_BACKEND"))
 
 if __name__ == '__main__':
 
-    nltk.download('wordnet')
-
     if os.environ.get('KI_BACKEND') == 'prod':
         run_simple('0.0.0.0', 5000, app,
                    use_reloader=False, use_debugger=False,
