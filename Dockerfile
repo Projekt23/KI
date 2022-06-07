@@ -10,6 +10,7 @@ RUN pip install -r requirements.txt
 # Download Tokenizer von spaCy
 RUN python -m spacy download en_core_web_sm
 RUN python -m spacy download de_core_news_sm
+RUN python -m nltk.downloader all
 
 # Kopieren des source-code
 COPY . /app
