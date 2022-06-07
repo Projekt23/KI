@@ -11,3 +11,4 @@ beautifulsoup4~=4.11.1
 Werkzeug~=2.1.2
 wordhoard~=1.5.1
 spacy~=3.3.0
+python-logstash-async~=2.5.0
