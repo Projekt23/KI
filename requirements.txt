@@ -1,0 +1,14 @@
+Flask==2.1.2
+Flask-Cors==3.0.10
+pandas==1.4.2
+nltk==3.7
+python-dotenv==0.20.0
+flasgger~=0.9.5
+config~=0.5.1
+wikipedia~=1.4.0
+requests~=2.27.1
+beautifulsoup4~=4.11.1
+Werkzeug~=2.1.2
+wordhoard~=1.5.1
+spacy~=3.3.0
+python-logstash-async~=2.5.0
