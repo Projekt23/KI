@@ -16,10 +16,17 @@ nlp_de = spacy.load('de_core_news_sm')
 
 
 def search_wiki(term):
+    """
+    Unused search of wikipedia by external library.
+    """
     return wikipedia.search(term)
 
 
 def get_wiki_site_text(sitename):
+    """
+    Unused function to extract the content from a wikipedia site by name.
+    """
+
     try:
         page = wikipedia.page(sitename)
     except wikipedia.exceptions.DisambiguationError as e:
@@ -28,15 +35,32 @@ def get_wiki_site_text(sitename):
 
 
 def get_wiki_text(term, sent=5, lang='en'):
+    """
+    Fetches the summarized text from a wikipedia article.
+    """
+
     list = search_wiki(term)
     print(clean_wiki_content(api_search(term)))
     print("List = ", list)
     if len(list) == 0:
         return 'No result found.'
-    return summarize_text(get_wiki_site_text(list[0]), sent=sent)
+    return summarize_text(get_wiki_site_text(list[0]), sent=sent, lang='en')
 
 
 def summarize_text(text, sent=5, lang='en'):
+    """
+    Summarizes a text to a predetermined length. If input text is shorter, returns full text.
+
+    Parameters
+    ----------
+    text: text to be summarized
+    sent: maximum number of sentences of result text
+    lang: language of the text
+
+    Returns
+    -------
+    a tuple of the summarized text and the number of sentences
+    """
     if lang == 'de':
         stopwords = list(STOP_WORDS_DE)
         doc = nlp_de(text)
@@ -89,7 +113,18 @@ def summarize_text(text, sent=5, lang='en'):
 
 
 def api_search(query):
-    # Aufruf auf die Wikipedia-Suche um die genaue Wikipedia-Seite zu finden (Page-ID und Titel der Seite)
+    """
+    Calls wikipedia search and fetch page content of the most fitting article.
+
+    Parameters
+    ----------
+    query: query term
+
+    Returns
+    -------
+    content as string
+    """
+
     search_response = requests.get(
         "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + query + "&format=json")
     search_data = search_response.json()
@@ -125,6 +160,9 @@ def scraper_search(query):
 
 
 def clean_content(content):
+    """
+    Cleans the content of the wikipedia page by removing unwanted tags and other encoded symbols.
+    """
     while content.find("<!--", 0, len(content)) != -1:  # Prüft ob der gegebene Substring im gegebenen String vorliegt,
         # Schleife besteht solange der Substring gefunden wird.
         if content.find("-->", 0, len(content)) != -1:  # wenn Schliesszeichen vorhanden
@@ -221,6 +259,9 @@ def KlammernZusammenordnen(Zeichenliste):
 
 
 def clean_wiki_content(content):
+    """
+    Cleans the content of the wikipedia page by removing unwanted tags and other encoded symbols.
+    """
     change = -1
     while (
             change != 0):  # Solange es eine Änderung innerhalb der Schleife gab, soll eine weitere Iteration der Schleife erfolgen.

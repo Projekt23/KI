@@ -15,8 +15,8 @@ def generate_synonyms():
     parameters:
     definitions:
         SynonymList:
-        type: array
-        items: string
+            type: array
+            items: string
     responses:
         200:
             description: A list of synonyms

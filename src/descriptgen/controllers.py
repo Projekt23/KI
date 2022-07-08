@@ -9,6 +9,23 @@ mod = Blueprint('descriptgen', __name__, url_prefix='/descriptgen')
 
 @mod.route('/generatedescription', methods=['POST'])
 def generate_description():
+    """
+    Generates a description for a provided term by searching for and summarizing a corresponding wikipedia article.
+    ---
+    parameters:
+    definitions:
+        DescriptionResp:
+            type: array
+            items: string
+    responses:
+        200:
+            description: A description of
+            schema:
+                $ref: '#/definitions/SynonymList'
+            examples:
+                invoice: {"description": "This is a test description."}
+    """
+
     data = request.get_json()
 
     if not isinstance(data.get('term'), str):
@@ -43,6 +60,29 @@ def generate_description():
 
 @mod.route('/summarize', methods=['POST'])
 def summarize():
+    """
+    Generates a summary for a provided text. Can be configured to choose between different languages and summarization techniques.
+    ---
+    parameters:
+    definitions:
+        DescriptionResp:
+            type: object
+            properties:
+                summary:
+                    type: string
+                lang:
+                    type: string
+                sent:
+                    type: integer
+    responses:
+        200:
+            description: A summary of the provided text
+            schema:
+                $ref: '#/definitions/DescriptionResp'
+            examples:
+                invoice: {"description": "This is a test description."}
+    """
+
     data = request.get_json()
     if not isinstance(data.get('text'), str):
         result = {
